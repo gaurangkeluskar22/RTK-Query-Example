@@ -9,9 +9,9 @@ function App() {
       {data?.products ? (
         data.products.map((product) => {
           return (
-            <div key={product.id} className="card">
-              <img src={product.images[0]} width="300px"></img>
-              <p>{product.brand}</p>
+            <div key={product.id} className="card mx-auto w-50 m-2">
+              <img src={product.images[0]} width="300px" className="mx-auto p-2"></img><br/>
+              <span>{product.brand}</span> <span>{product.price}</span>
               <p>{product.description}</p>
             </div>
           );
