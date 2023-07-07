@@ -1,13 +1,17 @@
 import "./App.css";
-import { useGetAllProductsQuery } from "./store/productsApi";
+import { useGetAllProductsQuery, useGetSingleProductQuery } from "./store/productsApi";
+import { useState } from "react";
 
 function App() {
   const { data } = useGetAllProductsQuery();
-  console.log(data);
+  const [input,setInput] = useState("");
+  const {data:singleProduct} = useGetSingleProductQuery(input);
+  
   return (
     <div className="App">
-      {data?.products ? (
-        data.products.map((product) => {
+      <input type="text" name="search" placeholder="Search Product" onChange={(e)=>setInput(e.target.value)}/>
+      {singleProduct?.products ? (
+        singleProduct.products.map((product) => {
           return (
             <div key={product.id} className="card mx-auto w-50 m-2">
               <img src={product.images[0]} width="300px" className="mx-auto p-2"></img><br/>
